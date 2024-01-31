@@ -9,11 +9,15 @@
 <script setup lang="ts">
   import { onMounted } from 'vue'
   import handleClipboard from '@/utils/clipboard.ts'
+
+  const getUrl = (path: string) => {
+    return new URL(path, import.meta.url).href
+  }
   const number = 40
   onMounted(() => {
     for (let i = 1; i <= number; i++) {
-      const url = `src/views/classic-loader/modules/loading_${i}.css`
       // 动态创建 link 元素并添加到 head 元素中
+      const url = getUrl(`./modules/loading_${i}.css`)
       const link = document.createElement('link')
       link.href = url
       link.rel = 'stylesheet'

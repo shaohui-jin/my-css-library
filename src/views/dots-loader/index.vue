@@ -9,10 +9,13 @@
 <script setup lang="ts">
   import { onMounted } from 'vue'
   import handleClipboard from '@/utils/clipboard.ts'
+  const getUrl = (path: string) => {
+    return new URL(path, import.meta.url).href
+  }
   const number = 50
   onMounted(() => {
     for (let i = 1; i <= number; i++) {
-      const url = `src/views/dots-loader/modules/loading_${i}.css`
+      const url = getUrl(`./modules/loading_${i}.css`)
       // 动态创建 link 元素并添加到 head 元素中
       const link = document.createElement('link')
       link.href = url

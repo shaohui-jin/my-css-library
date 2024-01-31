@@ -137,11 +137,7 @@ export const getQueryString = (path: string, name: string): string | null => {
  * @param interval 间隔时间
  * @param isImmediate 是否第一次执行
  */
-export const debounce = (
-  callback: (...rest: any) => void,
-  interval: number = 500,
-  isImmediate: boolean = true
-): ((this: any, ...rest: any[]) => void) => {
+export const debounce = (callback: (...rest: any) => void, interval: number = 500, isImmediate: boolean = true): ((this: any, ...rest: any[]) => void) => {
   let timer: NodeJS.Timeout
 
   return function (this: any, ...rest: any[]) {
@@ -164,10 +160,7 @@ export const debounce = (
  * @param callback 回调函数
  * @param interval 时间
  */
-export const throttle = (
-  callback: (...rest: any) => void,
-  interval: number = 500
-): ((this: any, ...rest: any[]) => void) => {
+export const throttle = (callback: (...rest: any) => void, interval: number = 500): ((this: any, ...rest: any[]) => void) => {
   let oldTime: number = 0
   return function (this: any, ...rest: any[]) {
     const newTime: number = new Date().getTime()
@@ -228,4 +221,3 @@ export const scaleFormat = (value: any = 0, scale: number = 4) => {
 export const scale2Format = (value: any = 0) => {
   return Number.parseFloat(value).toFixed(2)
 }
-
