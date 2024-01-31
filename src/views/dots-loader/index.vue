@@ -1,35 +1,29 @@
 <template>
   <div class="load-container">
-    <article v-for="n in number" :key="n">
+    <article v-for="n in cssLength" :key="n">
       <div :id="`dots-loader_${n}`" :class="`dots-loader_${n}`"></div>
       <button @click="copy(n, $event)">Copy the CSS</button>
     </article>
   </div>
 </template>
 <script setup lang="ts">
-  import { onMounted } from 'vue'
+  import { onMounted, reactive, ref } from 'vue'
   import handleClipboard from '@/utils/clipboard.ts'
-  const getUrl = (path: string) => {
-    return new URL(path, import.meta.url).href
-  }
-  const number = 50
+  const cssMap = reactive<Record<string, string>>({})
+  const cssLength = ref<number>(0)
+
   onMounted(() => {
-    for (let i = 1; i <= number; i++) {
-      const url = getUrl(`./modules/loading_${i}.css`)
-      // 动态创建 link 元素并添加到 head 元素中
-      const link = document.createElement('link')
-      link.href = url
-      link.rel = 'stylesheet'
-      document.head.appendChild(link)
-    }
+    import.meta.glob('./modules/*.css', { eager: true })
+    const modules = import.meta.glob('./modules/*.css', { as: 'raw' })
+    Object.keys(modules).forEach(k => {
+      cssMap[k] = ''
+      modules[k]().then(css => {
+        cssMap[k] = css
+      })
+      cssLength.value = Object.keys(cssMap).length
+    })
   })
   const copy = (i: number, $event: Event) => {
-    const url = `/dots-loader/modules/loading_${i}.css`
-    const styleArray: CSSStyleSheet[] = Array.from(document.styleSheets)
-    let style: CSSStyleSheet
-    style = (styleArray.find(e => (e.href || '').includes(url)) || {}) as CSSStyleSheet
-    let cssList: Array<CSSStyleRule | CSSKeyframesRule>
-    cssList = Array.from(style.cssRules || []) as Array<CSSStyleRule | CSSKeyframesRule>
-    handleClipboard(cssList.map((z: any) => z.cssText || '').join('\n'), $event)
+    handleClipboard(cssMap[`./modules/loading_${i}.css`], $event)
   }
 </script>

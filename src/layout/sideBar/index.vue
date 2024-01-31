@@ -1,6 +1,6 @@
 <template>
   <el-menu default-active="2" class="el-menu-vertical-demo" :collapse="themeConfig.isCollapse" :router="true">
-    <el-menu-item v-for="(menu, menuIndex) in MENU_LIST" :index="menuIndex.toString()" @click="handleMenuItem(menu)">
+    <el-menu-item v-for="(menu, menuIndex) in MENU_LIST" :key="menuIndex" :index="menu.path" @click="handleMenuItem(menu)">
       <!--      <el-icon><Document /></el-icon>-->
       <template #title>
         {{ menu.name }}
