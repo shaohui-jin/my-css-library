@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import { reactive, toRefs } from 'vue'
-import { CookieEnum } from '@/constant/modules/cookie.ts'
+import { CookieEnum } from '@/constant/index.ts'
 import { isObjectEmpty } from '@/utils/common.ts'
 import { getCookie } from '@/utils/cookie.ts'
 

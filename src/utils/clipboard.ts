@@ -8,10 +8,10 @@ const clipboardError = () => {
   ElMessage.error('复制失败')
 }
 
-const handleClipboard = (text, event) => {
+const handleClipboard = (text: any, event: any) => {
   const clipboard = new Clipboard(event.target, {
     text: () => text
-  })
+  }) as any
   clipboard.on('success', () => {
     clipboardSuccess()
     clipboard.destroy()

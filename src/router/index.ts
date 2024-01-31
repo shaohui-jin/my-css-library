@@ -1,9 +1,13 @@
 import { createRouter, createWebHistory, RouteRecordRaw as _RouteRecordRaw } from 'vue-router'
 import { reactive } from 'vue'
-import { useStore } from "@/store";
+import { useStore } from '@/store'
 
-export type RouteRecordRaw = _RouteRecordRaw & { title?: string }
-export const MENU_LIST = reactive<[RouteRecordRaw]>([
+interface extra {
+  title?: string
+}
+export type RouteRecordRaw = _RouteRecordRaw & extra
+
+export const MENU_LIST = reactive<Array<RouteRecordRaw>>([
   {
     path: '/classic-loader',
     name: 'The Classic Loader',
