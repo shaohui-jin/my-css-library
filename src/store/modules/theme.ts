@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { reactive, toRefs } from 'vue'
+import { reactive, toRefs } from "vue";
 import { CookieEnum } from '@/constant/index.ts'
 import { isObjectEmpty } from '@/utils/common.ts'
 import { getCookie } from '@/utils/cookie.ts'
@@ -26,9 +26,7 @@ export const ThemeStore = defineStore(
 
     const themeConfig = reactive<ThemeType>(config)
 
-    return {
-      ...toRefs(themeConfig)
-    }
+    return { ...toRefs(themeConfig) }
   },
   {
     persist: {

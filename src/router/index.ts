@@ -3,6 +3,7 @@ import { reactive } from 'vue'
 import { useStore } from '@/store'
 
 interface extra {
+  shortName: string
   title?: string
 }
 export type RouteRecordRaw = _RouteRecordRaw & extra
@@ -11,12 +12,14 @@ export const MENU_LIST = reactive<Array<RouteRecordRaw>>([
   {
     path: '/classic-loader',
     name: 'The Classic Loader',
+    shortName: 'Classic',
     title: 'The Classic CSS Loaders Collection',
     component: () => import(/* webpackChunkName: "about" */ '../views/classic-loader/index.vue')
   },
   {
     path: '/dots-loader',
     name: 'The Dots Loader',
+    shortName: 'Dots',
     title: 'The Dots CSS Loaders Collection',
     component: () => import(/* webpackChunkName: "about" */ '../views/dots-loader/index.vue')
   }
