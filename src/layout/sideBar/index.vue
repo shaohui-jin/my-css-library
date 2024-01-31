@@ -13,12 +13,17 @@
   import { useStore } from '@/store'
   import { useRouter } from 'vue-router'
   import { RouteRecordRaw, MENU_LIST } from '@/router'
+  import { onMounted } from 'vue'
   const router = useRouter()
   const themeConfig = useStore().useThemeStore
 
   const handleMenuItem = (menu: RouteRecordRaw) => {
     router.push(menu.path)
   }
+
+  onMounted(() => {
+    handleMenuItem(MENU_LIST[0])
+  })
 </script>
 
 <style scoped lang="less">

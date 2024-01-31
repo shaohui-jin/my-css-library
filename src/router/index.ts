@@ -22,14 +22,7 @@ export const MENU_LIST = reactive<Array<RouteRecordRaw>>([
   }
 ])
 
-const routes: Array<RouteRecordRaw> = [
-  {
-    path: '/',
-    name: 'home',
-    redirect: '/classic-loader'
-  },
-  ...MENU_LIST
-]
+const routes: Array<RouteRecordRaw> = [...MENU_LIST]
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
