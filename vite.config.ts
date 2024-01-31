@@ -16,7 +16,7 @@ export default defineConfig({
       '@': resolve(__dirname, 'src') // 设置 `@` 指向 `src` 目录
     }
   },
-  base: '/my-css-loaders/', // 设置打包路径
+  base: '/my-css-library/', // 设置打包路径
   server: {
     host: '10.0.3.7',
     port: 4000, // 设置服务启动端口号
