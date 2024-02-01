@@ -1,7 +1,7 @@
 <template>
   <div class="nav-bar-container">
     <el-icon @click="handleCollapse"><Operation /></el-icon>
-    <span>CSS Loaders（{{ themeConfig.pageTitle }}）</span>
+    <span>{{ themeConfig.pageTitle }} {{ themeConfig.pageSubTitle !== '' ? `(${themeConfig.pageSubTitle})` : '' }}</span>
     <el-icon><User /></el-icon>
   </div>
 </template>

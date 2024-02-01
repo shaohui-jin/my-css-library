@@ -1,7 +1,7 @@
 <template>
-  <div class="load-container">
+  <div class="css-load-container">
     <article v-for="n in cssLength" :key="n">
-      <div :id="`dots-loader_${n}`" :class="`dots-loader_${n}`"></div>
+      <div :id="`classic-loader_${n}`" :class="`classic-loader_${n}`"></div>
       <button @click="copy(n, $event)">Copy the CSS</button>
     </article>
   </div>

@@ -3,25 +3,54 @@ import { reactive } from 'vue'
 import { useStore } from '@/store'
 
 interface extra {
-  shortName: string
-  title?: string
+  meta: {
+    title: string
+  }
 }
 export type RouteRecordRaw = _RouteRecordRaw & extra
 
 export const MENU_LIST = reactive<Array<RouteRecordRaw>>([
   {
-    path: '/classic-loader',
-    name: 'The Classic Loader',
-    shortName: 'Classic',
-    title: 'The Classic CSS Loaders Collection',
-    component: () => import(/* webpackChunkName: "about" */ '../views/classic-loader/index.vue')
+    path: '/loader',
+    name: 'Loader',
+    meta: {
+      title: 'CSS Loaders'
+    },
+    children: [
+      {
+        path: '/classic-loader',
+        name: 'The Classic Loader',
+        meta: {
+          title: 'The Classic CSS Loaders Collection'
+        },
+        component: () => import(/* webpackChunkName: "about" */ '../views/loader/classic/index.vue')
+      },
+      {
+        path: '/dots-loader',
+        name: 'The Dots Loader',
+        meta: {
+          title: 'The Dots CSS Loaders Collection'
+        },
+        component: () => import(/* webpackChunkName: "about" */ '../views/loader/dots/index.vue')
+      }
+    ]
   },
   {
-    path: '/dots-loader',
-    name: 'The Dots Loader',
-    shortName: 'Dots',
-    title: 'The Dots CSS Loaders Collection',
-    component: () => import(/* webpackChunkName: "about" */ '../views/dots-loader/index.vue')
+    path: '/other',
+    name: 'Other',
+    meta: {
+      title: 'CSS other'
+    },
+    children: [
+      {
+        path: '/interesting',
+        name: 'The Interesting CSS',
+        meta: {
+          title: 'The Classic CSS Loaders Collection'
+        },
+        component: () => import(/* webpackChunkName: "about" */ '../views/other/interesting/index.vue')
+      }
+    ]
   }
 ])
 
@@ -33,8 +62,11 @@ const router = createRouter({
 })
 
 router.beforeEach(to => {
-  const menu = MENU_LIST.find(e => e.path === to.path)
-  const themeConfig = useStore().useThemeStore
-  themeConfig.pageTitle = menu?.title || ''
+  console.log(to.matched)
+  if (to.matched.length === 2) {
+    const themeConfig = useStore().useThemeStore
+    themeConfig.pageTitle = (to.matched[0].meta.title || '') as string
+    themeConfig.pageSubTitle = (to.matched[1].meta.title || '') as string
+  }
 })
 export default router
