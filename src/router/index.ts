@@ -19,7 +19,7 @@ export const MENU_LIST = reactive<Array<RouteRecordRaw>>([
     children: [
       {
         path: '/classic-loader',
-        name: 'The Classic Loader',
+        name: 'Classic Loader',
         meta: {
           title: 'The Classic CSS Loaders Collection'
         },
@@ -27,7 +27,7 @@ export const MENU_LIST = reactive<Array<RouteRecordRaw>>([
       },
       {
         path: '/dots-loader',
-        name: 'The Dots Loader',
+        name: 'Dots Loader',
         meta: {
           title: 'The Dots CSS Loaders Collection'
         },
@@ -39,14 +39,14 @@ export const MENU_LIST = reactive<Array<RouteRecordRaw>>([
     path: '/other',
     name: 'Other',
     meta: {
-      title: 'CSS other'
+      title: 'Other'
     },
     children: [
       {
         path: '/interesting',
-        name: 'The Interesting CSS',
+        name: 'Interesting VUE Comp',
         meta: {
-          title: 'The Classic CSS Loaders Collection'
+          title: 'The Interesting VUE Component Collection'
         },
         component: () => import(/* webpackChunkName: "about" */ '../views/other/interesting/index.vue')
       }

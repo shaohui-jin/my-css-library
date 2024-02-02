@@ -1,29 +1,9 @@
----
-title: 流光按钮
-lang: zh-CN
-date: 2022-05-16 11:21:30
-permalink: /FrontEnd/CssComponent/StreamerButton
-category: 
-  - CSS
-tag: 
-  - CSS
----
-
-::: vue-demo
-```html
 <template>
   <div class="button-body">
     <a class="streamer-button">StreamerButton</a>
   </div>
 </template>
-
-<script>
-  export default {
-    name: "StreamerButton"
-  }
-</script>
-
-<style>
+<style lang="less">
   .button-body {
     /* 弹性布局 让页面元素垂直 + 水平居中 */
     display: flex;
@@ -58,7 +38,7 @@ tag:
   }
 
   .streamer-button::before {
-    content: "1";
+    content: '1';
     position: absolute;
     top: -5px;
     buttom: -5px;
@@ -91,5 +71,3 @@ tag:
     }
   }
 </style>
-```
-:::

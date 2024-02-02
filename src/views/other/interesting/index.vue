@@ -1,39 +1,43 @@
 <template>
   <div class="css-load-container">
-    <article v-for="n in cssLength" :key="n">
-      <div :id="`interesting_${n}`" :class="`interesting_${n}`"></div>
+    <article v-for="n in Object.keys(cssMap).length" :key="n">
+      <component :is="cssMap[`./modules/interesting_${n}.vue`].comp"></component>
       <button @click="copy(n, $event)">Copy the CSS</button>
     </article>
   </div>
 </template>
 <script setup lang="ts">
-  import { onMounted, reactive, ref } from 'vue'
+  import { defineAsyncComponent, markRaw, onMounted, reactive } from 'vue'
   import handleClipboard from '@/utils/clipboard.ts'
+  const cssMap = reactive<Record<string, { comp: any; code: string }>>({})
 
-  const cssMap = reactive<Record<string, string>>({})
-  const cssLength = ref<number>(0)
-
-  onMounted(() => {
-    import.meta.glob('./modules/*.css', { eager: true })
-    const modules = import.meta.glob('./modules/*.css', { as: 'raw' })
-    Object.keys(modules).forEach(k => {
-      cssMap[k] = ''
-      modules[k]().then(css => {
-        cssMap[k] = css
-      })
-      cssLength.value = Object.keys(cssMap).length
-    })
+  onMounted(async () => {
+    const modulesRaw = import.meta.glob('./modules/*.vue', { as: 'raw' })
+    const modules = import.meta.glob('./modules/*.vue')
+    for (let each in modules) {
+      cssMap[each] = {
+        comp: markRaw(defineAsyncComponent(modules[each] as any)),
+        code: await modulesRaw[each]()
+      }
+    }
   })
-  const copy = (i: number, $event: Event) => {
-    handleClipboard(cssMap[`./modules/interesting_${i}.css`], $event)
-  }
+  const copy = (i: number, $event: Event) => handleClipboard(cssMap[`./modules/interesting_${i}.vue`].code, $event)
 </script>
 
 <style lang="less" scoped>
-  .el-main .css-load-container article > * {
-    grid-area: unset;
-  }
-  .el-main .css-load-container article button:before {
-    position: unset;
+  .el-main {
+    .css-load-container {
+      //transition: all 0.8s;
+      //grid-area: 1/1;
+      //grid-area: unset;
+      //&:hover {
+      article > * {
+        grid-area: unset;
+      }
+      //}
+      button:before {
+        position: unset;
+      }
+    }
   }
 </style>

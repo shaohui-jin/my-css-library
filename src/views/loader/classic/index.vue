@@ -1,9 +1,25 @@
 <template>
-  <div class="css-load-container">
-    <article v-for="n in cssLength" :key="n">
-      <div :id="`classic-loader_${n}`" :class="`classic-loader_${n}`"></div>
-      <button @click="copy(n, $event)">Copy the CSS</button>
-    </article>
+  <div class="login-body">
+    <div class="login-container">
+      <div class="left-container">
+        <div class="title"><span>登录</span></div>
+        <div class="input-container">
+          <input type="text" name="username" placeholder="用户名" />
+          <input type="password" name="password" placeholder="密码" />
+        </div>
+        <div class="message-container">
+          <span>忘记密码</span>
+        </div>
+      </div>
+      <div class="right-container">
+        <div class="registry-container">
+          <span>注册</span>
+        </div>
+        <div class="action-container">
+          <span>提交</span>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 <script setup lang="ts">

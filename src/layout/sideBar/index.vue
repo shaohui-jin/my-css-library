@@ -32,8 +32,8 @@
     { deep: true, immediate: true }
   )
   onMounted(() => {
-    if (route.path === '') {
-      router.replace(MENU_LIST[0].children ? MENU_LIST[0].children[0].path : MENU_LIST[0].path)
+    if (route.path === '/') {
+      router.replace(MENU_LIST[1].children ? MENU_LIST[1].children[0].path : MENU_LIST[1].path)
     }
     window.addEventListener('resize', handleResize)
   })
@@ -45,7 +45,7 @@
 
 <style scoped lang="less">
   .el-menu {
-    width: 200px;
+    width: 250px;
     min-height: 100%;
     //.el-sub-menu__title {
     //  :deep(.el-tooltip__trigger) {
