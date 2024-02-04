@@ -1,6 +1,6 @@
 <template>
   <div class="css-load-container">
-    <article v-for="n in Object.keys(cssMap).length" :key="n">
+    <article v-for="n in Object.keys(cssMap).length" :key="n" class="article">
       <component :is="cssMap[`./modules/interesting_${n}.vue`].comp"></component>
       <button @click="copy(n, $event)">Copy the CSS</button>
     </article>
@@ -30,11 +30,8 @@
       //--grid-auto-rows: unset;
       transition: all 0.8s;
       grid-area: 1/1;
-      //grid-area: unset;
-      &:hover {
-        article > * {
-          grid-area: unset;
-        }
+      .article:hover > * {
+        grid-area: unset;
       }
       button:before {
         position: unset;

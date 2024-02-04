@@ -5,7 +5,7 @@
       <el-container>
         <el-header><NavBar /></el-header>
         <el-main><router-view /></el-main>
-        <el-footer>Footer</el-footer>
+        <el-footer>这只是个footer</el-footer>
       </el-container>
     </el-container>
   </div>
@@ -30,9 +30,15 @@
   .el-header {
     --el-header-padding: 0 10px;
     --el-header-height: 50px;
-    border-bottom: solid 1px var(--el-menu-border-color);
   }
   .el-main {
     @import '@/assets/css/body.less';
+    border-bottom: solid 1px var(--el-menu-border-color);
+    border-top: solid 1px var(--el-menu-border-color);
+  }
+  .el-footer {
+    --el-footer-padding: 0 10px;
+    --el-footer-height: 50px;
+    line-height: var(--el-footer-height);
   }
 </style>
