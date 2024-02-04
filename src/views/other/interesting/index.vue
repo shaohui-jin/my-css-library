@@ -27,14 +27,15 @@
 <style lang="less" scoped>
   .el-main {
     .css-load-container {
-      //transition: all 0.8s;
-      //grid-area: 1/1;
+      //--grid-auto-rows: unset;
+      transition: all 0.8s;
+      grid-area: 1/1;
       //grid-area: unset;
-      //&:hover {
-      article > * {
-        grid-area: unset;
+      &:hover {
+        article > * {
+          grid-area: unset;
+        }
       }
-      //}
       button:before {
         position: unset;
       }

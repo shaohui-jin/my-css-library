@@ -3,7 +3,7 @@
     <a class="streamer-button">StreamerButton</a>
   </div>
 </template>
-<style lang="less">
+<style scoped lang="less">
   .button-body {
     /* 弹性布局 让页面元素垂直 + 水平居中 */
     display: flex;
@@ -71,3 +71,5 @@
     }
   }
 </style>
+<script setup lang="ts">
+</script>
